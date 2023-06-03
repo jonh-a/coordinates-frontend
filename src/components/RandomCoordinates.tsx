@@ -1,13 +1,10 @@
 import React, { ChangeEvent } from 'react'
 import Box from '@mui/material/Box'
 import Dropdown from './common/Dropdown'
-import MultiDropdown from './common/MultiDropdown'
 import styled from 'styled-components'
-import Container from '@mui/material/Container'
 import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
-import { CountQueuingStrategy } from 'stream/web'
 
 interface Props {
   execute: (include: string[], units: string, country: string) => void
@@ -37,7 +34,9 @@ const RandomCoordinates: React.FC<Props> = ({
   return (
     <Paper
       sx={{
-        padding: '1em'
+        padding: '1em',
+        marginTop: '1em',
+        marginBottom: '1em',
       }}
     >
       <Typography
@@ -58,7 +57,8 @@ const RandomCoordinates: React.FC<Props> = ({
             label="Country"
             options={[
               { key: 'Any', value: 'any' },
-              ...countries?.sort((curr: any, next: any) => curr?.key?.localeCompare(next?.key))
+              ...countries
+                ?.sort((curr: any, next: any) => curr?.key?.localeCompare(next?.key))
             ]}
             width={50}
           />

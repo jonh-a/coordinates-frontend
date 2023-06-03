@@ -3,7 +3,6 @@ import Box from '@mui/material/Box'
 import Dropdown from './common/Dropdown'
 import MultiDropdown from './common/MultiDropdown'
 import styled from 'styled-components'
-import Container from '@mui/material/Container'
 import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 
@@ -29,7 +28,9 @@ const Parameters: React.FC<Props> = ({
   return (
     <Paper
       sx={{
-        padding: '1em'
+        padding: '1em',
+        marginTop: '1em',
+        marginBottom: '1em',
       }}
     >
       <Typography

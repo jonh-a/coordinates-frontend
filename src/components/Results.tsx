@@ -22,17 +22,16 @@ const Results: React.FC = () => {
   const [longitude, setLongitude] = useState<string>('')
   const [country, setCountry] = useState<string>('any')
 
-  const queryClient = useQueryClient();
-
   const requestCountries = async () => {
-    const url = `http://localhost:3001/countries`
+    const url = `https://coordinates-api.usingthe.computer/countries`
     const resp = await axios.get(url, { timeout: 5000 })
     return resp?.data?.map((country: any) => ({ key: country?.name_long, value: country?.name_long })) || []
   }
 
   const { data: countries } = useQuery({
     queryKey: ['country'],
-    queryFn: requestCountries
+    queryFn: requestCountries,
+    initialData: []
   })
 
   const requestRandomCoordinates = async (include: string[], units: string, country: string) => {
