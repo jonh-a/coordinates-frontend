@@ -7,12 +7,16 @@ import Container from '@mui/material/Container'
 import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
+import { CountQueuingStrategy } from 'stream/web'
 
 interface Props {
-  execute: (include: string[], units: string) => void
+  execute: (include: string[], units: string, country: string) => void
   include: string[]
   units: string
   data: any
+  country: string
+  setCountry: (country: string) => void
+  countries: any
 }
 
 const Row = styled.div`
@@ -26,6 +30,9 @@ const RandomCoordinates: React.FC<Props> = ({
   include,
   units,
   data,
+  country,
+  setCountry,
+  countries,
 }) => {
   return (
     <Paper
@@ -45,10 +52,24 @@ const RandomCoordinates: React.FC<Props> = ({
         autoComplete="off"
       >
         <Row>
+          <Dropdown
+            value={country}
+            setValue={setCountry}
+            label="Country"
+            options={[
+              { key: 'Any', value: 'any' },
+              ...countries?.sort((curr: any, next: any) => curr?.key?.localeCompare(next?.key))
+            ]}
+            width={50}
+          />
+
           <Button
             onClick={
-              () => execute(include, units)
+              () => execute(include, units, country)
             }
+            sx={{
+              width: '50%'
+            }}
           >
             Fetch
           </Button>
