@@ -1,14 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 import Box from '@mui/material/Box'
-import Parameters from './Parameters'
 import RandomCoordinates from './RandomCoordinates'
-import {
-  QueryClient,
-  useQueryClient,
-  useQuery
-} from '@tanstack/react-query'
+import SpecificCoordinates from './SpecificCoordinates'
+import { useQuery } from '@tanstack/react-query'
 
 const Container = styled(Box)`
 `
@@ -43,7 +39,7 @@ const Results: React.FC = () => {
     setData({ data: resp?.data, type: 'random' })
   }
 
-  const requestSpecificCoordinates = async () => {
+  const requestSpecificCoordinates = async (latitude: string, longitude: string, include: string[], units: string) => {
     const url = `https://coordinates-api.usingthe.computer/coordinates?lat=${latitude}&lon=${longitude}&include=${include?.join(',')}&units=${units}`
     const resp = await axios.get(url, { timeout: 5000 })
     setData({ data: resp?.data, type: 'specific' })
@@ -51,13 +47,6 @@ const Results: React.FC = () => {
 
   return (
     <Container>
-      <Parameters
-        setUnits={setUnits}
-        units={units}
-        setFeatures={setInclude}
-        features={include}
-      />
-
       <RandomCoordinates
         execute={requestRandomCoordinates}
         data={data}
@@ -66,7 +55,25 @@ const Results: React.FC = () => {
         country={country}
         setCountry={setCountry}
         countries={countries}
+        setUnits={setUnits}
+        setFeatures={setInclude}
+        features={include}
       />
+
+      <SpecificCoordinates
+        execute={requestSpecificCoordinates}
+        data={data}
+        include={include}
+        units={units}
+        setUnits={setUnits}
+        setFeatures={setInclude}
+        features={include}
+        latitude={latitude}
+        setLatitude={setLatitude}
+        longitude={longitude}
+        setLongitude={setLongitude}
+      />
+
     </Container>
   )
 }

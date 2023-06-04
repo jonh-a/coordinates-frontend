@@ -7,18 +7,20 @@ import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import SyntaxHighlighter from 'react-syntax-highlighter'
+import TextField from './common/TextField'
 
 interface Props {
-  execute: (include: string[], units: string, country: string) => void
+  execute: (latitude: string, longitude: string, include: string[], units: string) => void
   include: string[]
   units: string
   data: any
-  country: string
-  setCountry: (country: string) => void
-  countries: any
   setUnits: (values: string) => void;
   setFeatures: (values: string[]) => void;
   features: string[]
+  latitude: string
+  setLatitude: (values: string) => void
+  longitude: string
+  setLongitude: (values: string) => void
 }
 
 const Column = styled.div`
@@ -35,17 +37,18 @@ const Row = styled.div`
   flex-wrap: wrap;
 `
 
-const RandomCoordinates: React.FC<Props> = ({
+const SpecificCoordinates: React.FC<Props> = ({
   execute,
   include,
   units,
   data,
-  country,
-  setCountry,
-  countries,
   features,
   setFeatures,
   setUnits,
+  latitude,
+  setLatitude,
+  longitude,
+  setLongitude,
 }) => {
   return (
     <Paper
@@ -59,7 +62,7 @@ const RandomCoordinates: React.FC<Props> = ({
         variant='h5'
         sx={{ paddingBottom: '0.5em' }}
       >
-        Get Random Coordinates
+        Resolve Specific Coordinates
       </Typography>
       <Box
         component="form"
@@ -69,15 +72,17 @@ const RandomCoordinates: React.FC<Props> = ({
         <Row>
           <Column>
             <Row>
-              <Dropdown
-                value={country}
-                setValue={setCountry}
-                label="Country"
-                options={[
-                  { key: 'Any', value: 'any' },
-                  ...countries
-                    ?.sort((curr: any, next: any) => curr?.key?.localeCompare(next?.key))
-                ]}
+              <TextField
+                value={latitude}
+                setValue={setLatitude}
+                label="Latitude"
+                width={100}
+              />
+
+              <TextField
+                value={longitude}
+                setValue={setLongitude}
+                label="Longitude"
                 width={100}
               />
 
@@ -105,7 +110,7 @@ const RandomCoordinates: React.FC<Props> = ({
 
               <Button
                 onClick={
-                  () => execute(include, units, country)
+                  () => execute(latitude, longitude, include, units)
                 }
                 sx={{
                   width: '100%'
@@ -118,7 +123,7 @@ const RandomCoordinates: React.FC<Props> = ({
           <Column>
             <Row>
               <SyntaxHighlighter language='bash' wrapLongLines={true}>
-                {`curl "https://coordinates-api.usingthe.computer/${country === 'any' ? 'random' : `random/${country}`}?include=${include.join(',')}&units=${units}"`}
+                {`curl "https://coordinates-api.usingthe.computer/coordinates?lat=${latitude}&lon=${longitude}&include=${include.join(',')}&units=${units}"`}
               </SyntaxHighlighter>
             </Row>
           </Column>
@@ -126,7 +131,7 @@ const RandomCoordinates: React.FC<Props> = ({
       </Box>
 
       {
-        data?.type === 'random' && data?.data && (
+        data?.type === 'specific' && data?.data && (
           <SyntaxHighlighter language='json'>
             {JSON.stringify(data?.data, null, 4)}
           </SyntaxHighlighter>
@@ -136,4 +141,4 @@ const RandomCoordinates: React.FC<Props> = ({
   )
 }
 
-export default RandomCoordinates
+export default SpecificCoordinates
