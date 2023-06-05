@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import Box from '@mui/material/Box'
 import RandomCoordinates from './RandomCoordinates'
 import SpecificCoordinates from './SpecificCoordinates'
+import Disclaimer from './Disclaimer'
 import { useQuery } from '@tanstack/react-query'
 
 const Container = styled(Box)`
@@ -73,6 +74,8 @@ const Results: React.FC = () => {
         longitude={longitude}
         setLongitude={setLongitude}
       />
+
+      <Disclaimer />
 
     </Container>
   )

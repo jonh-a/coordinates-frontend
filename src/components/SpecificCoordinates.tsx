@@ -28,6 +28,11 @@ const Column = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  
+  @media (max-width: 768px) {
+    width: 100%;
+    margin-top: 1em;
+  }
 `
 
 const Row = styled.div`
@@ -58,12 +63,6 @@ const SpecificCoordinates: React.FC<Props> = ({
         marginBottom: '1em',
       }}
     >
-      <Typography
-        variant='h5'
-        sx={{ paddingBottom: '0.5em' }}
-      >
-        Resolve Specific Coordinates
-      </Typography>
       <Box
         component="form"
         noValidate
@@ -72,6 +71,13 @@ const SpecificCoordinates: React.FC<Props> = ({
         <Row>
           <Column>
             <Row>
+              <Typography
+                variant='h5'
+                sx={{ paddingBottom: '0.5em' }}
+              >
+                Resolve Specific Coordinates
+              </Typography>
+
               <TextField
                 value={latitude}
                 setValue={setLatitude}

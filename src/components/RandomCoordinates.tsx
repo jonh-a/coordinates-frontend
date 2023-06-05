@@ -7,6 +7,7 @@ import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import SyntaxHighlighter from 'react-syntax-highlighter'
+import { vs } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 
 interface Props {
   execute: (include: string[], units: string, country: string) => void
@@ -26,6 +27,11 @@ const Column = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  
+  @media (max-width: 768px) {
+    width: 100%;
+    margin-top: 1em;
+  }
 `
 
 const Row = styled.div`
@@ -55,12 +61,6 @@ const RandomCoordinates: React.FC<Props> = ({
         marginBottom: '1em',
       }}
     >
-      <Typography
-        variant='h5'
-        sx={{ paddingBottom: '0.5em' }}
-      >
-        Get Random Coordinates
-      </Typography>
       <Box
         component="form"
         noValidate
@@ -69,6 +69,13 @@ const RandomCoordinates: React.FC<Props> = ({
         <Row>
           <Column>
             <Row>
+              <Typography
+                variant='h5'
+                sx={{ paddingBottom: '0.5em' }}
+              >
+                Get Random Coordinates
+              </Typography>
+
               <Dropdown
                 value={country}
                 setValue={setCountry}
