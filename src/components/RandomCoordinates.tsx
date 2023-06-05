@@ -7,7 +7,6 @@ import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 import Button from '@mui/material/Button'
 import SyntaxHighlighter from 'react-syntax-highlighter'
-import { vs } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 
 interface Props {
   execute: (include: string[], units: string, country: string) => void

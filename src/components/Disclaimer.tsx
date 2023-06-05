@@ -3,19 +3,6 @@ import Box from '@mui/material/Box'
 import styled from 'styled-components'
 import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
-import { vs } from 'react-syntax-highlighter/dist/esm/styles/hljs'
-
-const Column = styled.div`
-  width: 50%;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  
-  @media (max-width: 768px) {
-    width: 100%;
-    margin-top: 1em;
-  }
-`
 
 const Row = styled.div`
   display: flex;
@@ -24,8 +11,7 @@ const Row = styled.div`
   flex-wrap: wrap;
 `
 
-const Disclaimer: React.FC = ({
-}) => {
+const Disclaimer: React.FC = () => {
   return (
     <Paper
       sx={{
