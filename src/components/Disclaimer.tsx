@@ -32,14 +32,16 @@ const Disclaimer: React.FC = () => {
             This service maps the borders of each country using Geojson data created by the <a href='https://github.com/nvkelso/natural-earth-vector/tree/master/10m_cultural'>Natural Earth</a> project.
             Each country's borders are represented at a 1:10m scale. It's possible that coordinates may occassionally be generated just outside of a given country's borders.
 
-            The raw Geojson data can be accessed through the linked repo or through the <a href='https://geojson-api.usingthe.computer'>Geojson API</a>.
+            The raw Geojson data can be accessed through the linked repo or through the <a href='https://github.com/jonh-a/coordinates-api/blob/main/src/geojson/10m.geojson'>Coordinates API repository</a>.
+
+            Geocoding and weather are provided by OpenStreetMap and OpenWeatherMap respectively.
 
             <br />
             <br />
 
             I had no part in the creation of the Geojson data, and unfortunately I can't speak to the accuracy of the data with regards to territorial disputes.
 
-            This project isn't under active maintenance, so if any of the data seems incorrect please don't hesitate to fork the <a href='https://github.com/jonh-a/geojson-api'>Geojson API</a> and <a href='https://github.com/jonh-a/coordinates-api'>Coordinates API</a> to utilize a different source.
+            This project isn't under active maintenance, so if any of the data seems incorrect please don't hesitate to fork the <a href='https://github.com/jonh-a/coordinates-api'>Coordinates API</a> to utilize a different source.
           </Typography>
         </Row>
       </Box>
